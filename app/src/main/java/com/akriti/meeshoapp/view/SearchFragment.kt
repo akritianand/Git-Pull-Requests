@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.LiveData
 import com.akriti.meeshoapp.R
 import com.akriti.meeshoapp.viewmodel.MainViewModel
+import dagger.android.support.AndroidSupportInjection
+import java.lang.Error
 import javax.inject.Inject
 
 class SearchFragment : Fragment() {
@@ -24,6 +27,7 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        AndroidSupportInjection.inject(this)
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -39,6 +43,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.fetchPullRequestsResultLiveData.observe(viewLifecycleOwner, ::onFetchPullRequestResult)
         setUpSearch(view)
         handleSearchState(savedInstanceState)
     }
@@ -56,6 +61,13 @@ class SearchFragment : Fragment() {
 //            instoreSearchBarWidget.setSearchText(searchText)
 //            viewModel.loadFreshSearch(searchText, leanPlumApplicationManager.instoreSearchAlgorithmVariant.value(), orionReleaseLeanplumManager.isStockTest, searchArgument?.shoppingListId)
 //        }
+    }
+
+    private fun onFetchPullRequestResult (state: MainViewModel.LiveDataState) {
+        when (state) {
+            is MainViewModel.LiveDataState.Success -> {}
+            MainViewModel.LiveDataState.Error -> {}
+        }
     }
 
 }
