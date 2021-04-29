@@ -1,7 +1,8 @@
 package com.akriti.meeshoapp.model
 
 data class PullRequestItem(
-    val title: String?,
-    val createdAt: String?,
-    val assignee: String?
-)
+    val prNo: Int,
+    val title: String,
+    val createdAt: String,
+    val createdBy: String
+): DisplayableItem

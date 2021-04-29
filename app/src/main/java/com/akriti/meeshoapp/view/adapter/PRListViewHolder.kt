@@ -11,8 +11,8 @@ class PRListViewHolder (
 ): RecyclerView.ViewHolder(itemView) {
 
     fun bind(pullRequest: PullRequestItem) {
-        itemView.findViewById<TextView>(R.id.pr_title).text = pullRequest.title
-        itemView.findViewById<TextView>(R.id.pr_created_at).text = pullRequest.createdAt
-        itemView.findViewById<TextView>(R.id.pr_assigne).text = pullRequest.assignee
+        itemView.findViewById<TextView>(R.id.pr_title).text = itemView.resources.getString(R.string.pr_item_title, pullRequest.prNo, pullRequest.title)
+        itemView.findViewById<TextView>(R.id.pr_created_at).text = itemView.resources.getString(R.string.pr_item_created_date, pullRequest.createdAt)
+        itemView.findViewById<TextView>(R.id.pr_created_by).text = itemView.resources.getString(R.string.pr_item_created_by, pullRequest.createdBy)
     }
 }

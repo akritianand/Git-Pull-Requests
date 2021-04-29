@@ -6,9 +6,13 @@ import com.akriti.meeshoapp.dependencies.annotations.qualifiers.ForMainThread
 import com.akriti.meeshoapp.model.GithubPullRequestsServiceResponse
 import com.akriti.meeshoapp.model.PullRequestItem
 import com.akriti.meeshoapp.repository.PullRequestsRepository
+import com.akriti.meeshoapp.view.utils.toFormattedDate
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import org.joda.time.LocalDate
 import javax.inject.Inject
 
 class GetPullRequestsUseCaseImpl @Inject constructor(
@@ -56,9 +60,10 @@ class GetPullRequestsUseCaseImpl @Inject constructor(
         response.forEach {
             result.add(
                 PullRequestItem(
+                    prNo = it.number,
                     title = it.title,
-                    createdAt = it.created_at,
-                    assignee = it.assignee?.login?.orEmpty()
+                    createdAt = it.created_at.toFormattedDate(),
+                    createdBy = it.user.login
             ))
         }
 
