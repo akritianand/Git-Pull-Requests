@@ -1,10 +1,17 @@
 package com.akriti.meeshoapp.domain
 
-import javax.inject.Inject
+import com.akriti.meeshoapp.model.PullRequestItem
 
-class GetPullRequestsUseCase @Inject constructor() {
+interface GetPullRequestsUseCase {
 
-    fun execute (input: String) {
+    fun setCallback(callback: Callback)
 
+    interface Callback {
+        fun onFetchPullRequestsSuccess(pullRequestsItem: List<PullRequestItem>)
+        fun onFetchPullRequestsError(e: Throwable)
     }
+
+    fun execute(owner: String, repo: String, status: String)
+
+    fun cleanup()
 }

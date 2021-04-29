@@ -31,14 +31,14 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        with(viewModel) {
-            if (searchText.isNotEmpty()) {
-                outState.putString(SEARCH_TEXT_KEY, searchText)
-            }
-        }
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        with(viewModel) {
+//            if (searchText.isNotEmpty()) {
+//                outState.putString(SEARCH_TEXT_KEY, searchText)
+//            }
+//        }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
