@@ -8,6 +8,7 @@ import androidx.lifecycle.get
 import com.akriti.base.injection.annotations.qualifiers.ForActivity
 import com.akriti.base.injection.annotations.scopes.PerActivity
 import com.akriti.base.injection.annotations.scopes.PerFragment
+import com.akriti.meeshoapp.dependencies.FragmentBindings
 import com.akriti.meeshoapp.domain.injection.GetPullRequestsUseCaseModule
 import com.akriti.meeshoapp.view.MainActivity
 import com.akriti.meeshoapp.viewmodel.MainViewModel
@@ -15,7 +16,10 @@ import com.akriti.meeshoapp.viewmodel.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [
+    GetPullRequestsUseCaseModule::class,
+    FragmentBindings::class,
+])
 class MainActivityModule {
 
     @Provides
@@ -27,4 +31,8 @@ class MainActivityModule {
     @PerActivity
     fun provideMainViewModel(activity: MainActivity, factory: MainViewModelFactory): MainViewModel =
         ViewModelProvider(activity, factory).get()
+
+    @Provides
+    @PerActivity
+    fun provideMutableLiveData() = MutableLiveData<MainViewModel.LiveDataState>()
 }

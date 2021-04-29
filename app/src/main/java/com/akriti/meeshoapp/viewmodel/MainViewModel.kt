@@ -22,25 +22,45 @@ class MainViewModel @Inject constructor(
         private const val CLOSED = "closed"
     }
 
+    private var page = 1
+    private var owner = ""
+    private var repo = ""
+
+    val items = mutableListOf<PullRequestItem>()
+
     sealed class LiveDataState {
-        data class Success(val pullRequestsItem: List<PullRequestItem>): LiveDataState()
+        object Success: LiveDataState()
         object Error: LiveDataState()
     }
 
-    fun fetchPullRequests(searchText: String) {
-        if (searchText.isNotBlank()) {
-            val input = searchText.split("/")
-            if (input.size == 2) {
-                getPullRequestsUseCase.execute(input[0], input[1], OPEN)
-            }
+    fun fetchPullRequests() {
+        if (owner.isNotBlank() && repo.isNotBlank()) {
+            getPullRequestsUseCase.execute(owner, repo, OPEN)
         }
     }
 
     override fun onFetchPullRequestsSuccess(pullRequestsItem: List<PullRequestItem>) {
-        fetchPullRequestsResultLiveData.value = LiveDataState.Success(pullRequestsItem)
+        items.addAll(pullRequestsItem)
+        fetchPullRequestsResultLiveData.value = LiveDataState.Success
     }
 
     override fun onFetchPullRequestsError(e: Throwable) {
         fetchPullRequestsResultLiveData.value = LiveDataState.Error
+    }
+
+    fun setInput(input: String) {
+        if (input.isNotBlank()) {
+            val tokens = input.split("/")
+            if (tokens.size == 2) {
+                owner = tokens[0]
+                repo = tokens[1]
+            }
+        }
+    }
+
+    fun clearInput() {
+        owner = ""
+        repo = ""
+        items.clear()
     }
 }

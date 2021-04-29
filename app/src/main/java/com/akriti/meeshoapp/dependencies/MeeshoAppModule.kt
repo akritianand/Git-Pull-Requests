@@ -17,7 +17,6 @@ import io.reactivex.schedulers.Schedulers
 
 @Module(includes = [
     MainActivityBindings::class,
-    FragmentBindings::class,
     NetworkModule::class
 ])
 class MeeshoAppModule {

@@ -13,17 +13,11 @@ import com.akriti.meeshoapp.viewmodel.MainViewModel
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [
-    GetPullRequestsUseCaseModule::class
-])
+@Module
 class SearchFragmentModule {
 
     @Provides
     @PerFragment
     @ForFragment
     fun provideSearchFragmentContext(fragment: SearchFragment): Context = fragment.requireContext()
-
-    @Provides
-    @PerFragment
-    fun provideMutableLiveData(): MutableLiveData<MainViewModel.LiveDataState> = MutableLiveData()
 }
