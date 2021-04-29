@@ -24,8 +24,8 @@ class GetPullRequestsUseCaseImpl @Inject constructor(
     override fun setCallback(callback: GetPullRequestsUseCase.Callback) {
         this.callback = callback
     }
-    override fun execute(owner: String, repo: String, status: String) {
-        trackDisposable(pullRequestsRepository.getPullRequests(owner, repo, status)
+    override fun execute(owner: String, repo: String, status: String, perPage: Int, page: Int) {
+        trackDisposable(pullRequestsRepository.getPullRequests(owner, repo, status, perPage, page)
             .subscribeOn(ioScheduler)
             .observeOn(computationScheduler)
             .map (::mapResponse)

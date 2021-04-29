@@ -53,14 +53,24 @@ class PRListFragment : Fragment() {
             paginator.bind(this) { viewModel.fetchPullRequests() }
         }
         recyclerViewAdapter.items = viewModel.items
+        paginator.hasMoreDataAvailable = viewModel.hasMoreData()
     }
 
     private fun onFetchPullRequestResult (state: MainViewModel.LiveDataState) {
         when (state) {
-            MainViewModel.LiveDataState.Success -> {
-                recyclerViewAdapter.items = viewModel.items
+            MainViewModel.LiveDataState.Loading -> {
+                paginator.isLoading = true
             }
-            MainViewModel.LiveDataState.Error -> {}
+            MainViewModel.LiveDataState.Success -> {
+                paginator.isLoading = false
+                recyclerViewAdapter.items = viewModel.items
+                recyclerViewAdapter.notifyDataSetChanged()
+                paginator.hasMoreDataAvailable = viewModel.hasMoreData()
+            }
+            MainViewModel.LiveDataState.Error -> {
+                paginator.isLoading = false
+                paginator.isError = true
+            }
         }
     }
 }

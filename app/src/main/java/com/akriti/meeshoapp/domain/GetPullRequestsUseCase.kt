@@ -11,7 +11,7 @@ interface GetPullRequestsUseCase {
         fun onFetchPullRequestsError(e: Throwable)
     }
 
-    fun execute(owner: String, repo: String, status: String)
+    fun execute(owner: String, repo: String, status: String, perPage: Int, page: Int)
 
     fun cleanup()
 }

@@ -9,6 +9,6 @@ class PullRequestsRepository @Inject constructor(
     private val githubPullRequestsService: GithubPullRequestsService
 ){
 
-    fun getPullRequests(owner: String, repo: String, status: String): Single<List<GithubPullRequestsServiceResponse>> =
-        githubPullRequestsService.getPullRequests(owner, repo, status)
+    fun getPullRequests(owner: String, repo: String, status: String, perPage: Int, page: Int): Single<List<GithubPullRequestsServiceResponse>> =
+        githubPullRequestsService.getPullRequests(owner, repo, status, perPage, page)
 }
