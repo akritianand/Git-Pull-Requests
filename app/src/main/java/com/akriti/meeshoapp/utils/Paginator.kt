@@ -1,4 +1,4 @@
-package com.akriti.meeshoapp.view.utils
+package com.akriti.meeshoapp.utils
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

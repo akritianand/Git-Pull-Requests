@@ -63,7 +63,7 @@ class SearchFragment : Fragment() {
                 shouldShowInvalidInputMessage(false)
                 shouldShowErrorMessage(false)
             }
-            MainViewModel.LiveDataState.Success -> {
+            MainViewModel.LiveDataState.Success, MainViewModel.LiveDataState.Empty -> {
                 shouldShowInvalidInputMessage(false)
                 shouldShowErrorMessage(false)
                 shouldShowLoadingIndicator(false)

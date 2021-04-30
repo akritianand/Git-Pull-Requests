@@ -1,6 +1,6 @@
 @file:JvmName("JodaTimeUtils")
 
-package com.akriti.meeshoapp.view.utils
+package com.akriti.meeshoapp.utils
 
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone

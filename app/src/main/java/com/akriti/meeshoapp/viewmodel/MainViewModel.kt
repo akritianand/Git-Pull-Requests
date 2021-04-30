@@ -1,5 +1,6 @@
 package com.akriti.meeshoapp.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.akriti.meeshoapp.domain.GetPullRequestsUseCase
@@ -22,9 +23,12 @@ class MainViewModel @Inject constructor(
         private const val PER_PAGE = 20
     }
 
-    private var page = 1
-    private var owner = ""
-    private var repo = ""
+    @VisibleForTesting
+    var page = 1
+    @VisibleForTesting
+    var owner = ""
+    @VisibleForTesting
+    var repo = ""
 
     var items = emptyList<DisplayableItem>()
 
@@ -32,6 +36,7 @@ class MainViewModel @Inject constructor(
         object Null: LiveDataState()
         object Loading: LiveDataState()
         object Success: LiveDataState()
+        object Empty: LiveDataState()
         object Error: LiveDataState()
         object InvalidInput: LiveDataState()
     }
@@ -52,7 +57,10 @@ class MainViewModel @Inject constructor(
 
     override fun onFetchPullRequestsSuccess(pullRequestsItem: List<PullRequestItem>) {
         items = pullRequestsItem
-        stateLiveData.value = LiveDataState.Success
+        if (items.isEmpty() && page == 1)
+            stateLiveData.value = LiveDataState.Empty
+        else
+            stateLiveData.value = LiveDataState.Success
     }
 
     override fun onFetchPullRequestsError(e: Throwable) {
@@ -87,8 +95,4 @@ class MainViewModel @Inject constructor(
     fun initLiveData() {
         stateLiveData.value = LiveDataState.Null
     }
-
-    fun getOwner() = owner
-
-    fun getRepo() = repo
 }
