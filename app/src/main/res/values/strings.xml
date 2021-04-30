@@ -1,7 +1,24 @@
 <resources>
-    <string name="app_name">MeeshoApp</string>
+    <string name="app_name">Assignment</string>
+
+    <!--Search Screen-->
+    <string name="search_greeting">Hi</string>
+    <string name="search_input_label">Please enter repository</string>
+    <string name="search_input_hint">username/repository</string>
+    <string name="search_button">Go</string>
+    <string name="search_general_error">Could not fetch data. Please try again later.</string>
+    <string name="search_invalid_input_error">Please enter valid input.</string>
+
+    <!--PR List Screen-->
+    <string name="pr_list_heading">Open Pull Requests</string>
+    <string name="pr_list_empty_message">There are no open pull requests.</string>
     <string name="pr_list_fragment_repository">%s/%s</string>
+
+    <!--Pull Request Item-->
     <string name="pr_item_title">[PR#%d]: %s</string>
     <string name="pr_item_created_date">created %s</string>
     <string name="pr_item_created_by">created by %s</string>
+
+    <!--PR List Error Item-->
+    <string name="pr_item_error">Could not load data. Tap to retry.</string>
 </resources>

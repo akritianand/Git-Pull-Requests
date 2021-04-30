@@ -31,12 +31,12 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/collapsing_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="@dimen/toolbar_height"
                     app:expandedTitleGravity="bottom"
-                    app:expandedTitleMarginEnd="16dp"
-                    app:expandedTitleMarginStart="16dp"
+                    app:expandedTitleMarginEnd="@dimen/dp_16"
+                    app:expandedTitleMarginStart="@dimen/dp_16"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-                    app:title="Open Pull Requests">
+                    app:title="@string/pr_list_heading">
 
                     <TextView
                         android:id="@+id/repository"
@@ -46,9 +46,9 @@
                         tools:text="Owner/Repository"
                         android:fontFamily="@font/cambay"
                         android:textColor="@color/light_grey"
-                        android:layout_marginStart="54dp"
-                        android:layout_marginTop="16dp"
-                        android:textSize="20sp" />
+                        android:layout_marginStart="@dimen/dp_54"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:textSize="@dimen/sp_20" />
 
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
@@ -59,9 +59,9 @@
 
                         <ImageView
                             android:id="@+id/back_button"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginEnd="12dp"
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:layout_marginEnd="@dimen/dp_12"
                             android:onClick="@{() -> clickListener.onClickListener()}"
                             android:src="@drawable/ic_arrow_back_white" />
 

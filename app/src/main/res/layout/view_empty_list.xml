@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/back_button"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
                     android:onClick="@{() -> clickListener.onClickListener()}"
                     android:src="@drawable/ic_arrow_back_white" />
 
@@ -42,9 +42,9 @@
                     tools:text="Owner/Repository"
                     android:fontFamily="@font/cambay"
                     android:textColor="@color/light_grey"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="14dp"
-                    android:textSize="20sp" />
+                    android:layout_marginStart="@dimen/dp_32"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:textSize="@dimen/sp_20" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/empty_logo"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/dp_64"
+            android:layout_height="@dimen/dp_64"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,12 +67,12 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:fontFamily="@font/cambay"
-            android:textSize="20sp"
+            android:textSize="@dimen/sp_20"
             app:layout_constraintTop_toBottomOf="@id/empty_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="There are no open pull requests." />
+            android:text="@string/pr_list_empty_message" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

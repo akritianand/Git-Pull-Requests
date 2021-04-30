@@ -3,8 +3,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
         android:background="@color/white">
 
         <TextView
@@ -12,8 +12,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/footer_error_text"
             android:gravity="center_horizontal"
-            android:textSize="16sp"
-            android:text="Could not load data. Tap to retry."
+            android:textSize="@dimen/sp_16"
+            android:text="@string/pr_item_error"
             android:textColor="?attr/colorSecondary" />
 
     </LinearLayout>
