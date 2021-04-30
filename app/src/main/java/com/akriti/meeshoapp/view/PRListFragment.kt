@@ -4,20 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.ViewFlipper
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.akriti.meeshoapp.R
+import com.akriti.meeshoapp.databinding.PrListFragmentBinding
+import com.akriti.meeshoapp.utils.OnClickHandler
 import com.akriti.meeshoapp.view.adapter.PRListAdapter
 import com.akriti.meeshoapp.utils.Paginator
 import com.akriti.meeshoapp.viewmodel.MainViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class PRListFragment : Fragment() {
+class PRListFragment : Fragment(), OnClickHandler {
 
     @Inject
     lateinit var recyclerViewAdapter: PRListAdapter
@@ -31,7 +31,7 @@ class PRListFragment : Fragment() {
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
 
-    private lateinit var viewFlipper: ViewFlipper
+    private lateinit var dataBinding: PrListFragmentBinding
 
     companion object {
         fun newInstance() = PRListFragment()
@@ -40,35 +40,27 @@ class PRListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         AndroidSupportInjection.inject(this)
-        return inflater.inflate(R.layout.pr_list_fragment, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.pr_list_fragment, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataBinding.viewmodel = viewModel
+        dataBinding.clickListener = this
         viewModel.stateLiveData.observe(viewLifecycleOwner, ::onFetchPullRequestResult)
-        viewFlipper = view.findViewById(R.id.view_flipper)
-        setupToolbar()
-        setupBackButton()
         setupRecyclerView()
     }
 
-    private fun setupToolbar() {
-        viewFlipper.currentView.findViewById<TextView>(R.id.repository)?.text = resources.getString(
-            R.string.pr_list_fragment_repository, viewModel.owner, viewModel.repo)
-    }
-
-    private fun setupBackButton() {
-        viewFlipper.currentView.findViewById<ImageView>(R.id.back_button)?.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, SearchFragment.newInstance())
-                .addToBackStack(null)
-                .commit()
-        }
+    override fun onClickListener() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container, SearchFragment.newInstance())
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun setupRecyclerView() {
-        val recyclerView = viewFlipper.currentView.findViewById<RecyclerView>(R.id.pr_recycler_view)
-        recyclerView.apply {
+        dataBinding.prRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = recyclerViewAdapter
             paginator.bind(this) { viewModel.fetchPullRequests() }
@@ -83,9 +75,7 @@ class PRListFragment : Fragment() {
                 recyclerViewAdapter.shouldShowLoading(true)
             }
             MainViewModel.LiveDataState.Empty -> {
-                viewFlipper.displayedChild = 1
-                setupToolbar()
-                setupBackButton()
+                dataBinding.viewFlipper.displayedChild = 1
             }
             MainViewModel.LiveDataState.Success -> {
                 paginator.isLoading = false

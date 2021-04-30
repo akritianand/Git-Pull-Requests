@@ -2,8 +2,12 @@ package com.akriti.meeshoapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.akriti.meeshoapp.R
+import com.akriti.meeshoapp.databinding.ItemPullRequestBinding
+import com.akriti.meeshoapp.databinding.ItemRecyclerViewErrorBinding
+import com.akriti.meeshoapp.databinding.PrListFragmentBinding
 import com.akriti.meeshoapp.model.DisplayableItem
 import com.akriti.meeshoapp.model.ErrorItem
 import com.akriti.meeshoapp.model.LoadingItem
@@ -40,16 +44,16 @@ class PRListAdapter @Inject constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             PULL_REQUEST -> {
-                val view = layoutInflater.inflate(R.layout.item_pull_request, parent, false)
-                PRListViewHolder(view)
+                val binding: ItemPullRequestBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_pull_request, parent, false)
+                PRListViewHolder(binding)
             }
             LOADING -> {
                 val view = layoutInflater.inflate(R.layout.item_recycler_view_loading, parent, false)
                 LoadingViewHolder(view)
             }
             else -> {
-                val view = layoutInflater.inflate(R.layout.item_recycler_view_error, parent, false)
-                ErrorViewHolder(view)
+                val binding: ItemRecyclerViewErrorBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_recycler_view_error, parent, false)
+                ErrorViewHolder(binding)
             }
         }
     }

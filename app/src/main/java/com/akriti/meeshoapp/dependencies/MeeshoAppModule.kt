@@ -1,7 +1,7 @@
 package com.akriti.meeshoapp.dependencies
 
 import android.content.Context
-import com.akriti.meeshoapp.view.injection.activity.MainActivityBindings
+import com.akriti.meeshoapp.view.injection.activity.MainActivityBuilder
 import com.akriti.base.injection.annotations.qualifiers.ForApplication
 import com.akriti.base.injection.annotations.scopes.PerApplication
 import com.akriti.meeshoapp.MeeshoApp
@@ -16,7 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Module(includes = [
-    MainActivityBindings::class,
+    MainActivityBuilder::class,
     NetworkModule::class
 ])
 class MeeshoAppModule {

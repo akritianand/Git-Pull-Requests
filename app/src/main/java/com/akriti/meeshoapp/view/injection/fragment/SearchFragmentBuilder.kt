@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class SearchFragmentBindings {
+abstract class SearchFragmentBuilder {
 
     @PerFragment
     @ContributesAndroidInjector(modules = [SearchFragmentModule::class])

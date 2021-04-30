@@ -1,11 +1,11 @@
 package com.akriti.meeshoapp.dependencies
 
-import com.akriti.meeshoapp.view.injection.fragment.PRListFragmentBindings
-import com.akriti.meeshoapp.view.injection.fragment.SearchFragmentBindings
+import com.akriti.meeshoapp.view.injection.fragment.PRListFragmentBuilder
+import com.akriti.meeshoapp.view.injection.fragment.SearchFragmentBuilder
 import dagger.Module
 
 @Module(includes = [
-    SearchFragmentBindings::class,
-    PRListFragmentBindings::class
+    SearchFragmentBuilder::class,
+    PRListFragmentBuilder::class
 ])
 class FragmentBindings

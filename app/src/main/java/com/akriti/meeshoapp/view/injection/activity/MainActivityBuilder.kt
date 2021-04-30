@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class MainActivityBindings {
+abstract class MainActivityBuilder {
 
     @PerActivity
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
