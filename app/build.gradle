@@ -5,6 +5,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        Meesho {
+            storeFile file('/Users/akriti/Desktop/Key')
+            storePassword 'anki29@'
+            keyAlias 'key0'
+            keyPassword 'anki29@'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
@@ -21,6 +29,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.Meesho
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -71,13 +71,16 @@ class SearchFragment : Fragment(), OnClickHandler {
                 dataBinding.showError = false
             }
             MainViewModel.LiveDataState.Success, MainViewModel.LiveDataState.Empty -> {
+                dataBinding.shouldEnableInput = true
                 dataBinding.showInvalidInputError = false
                 dataBinding.showError = false
                 dataBinding.showLoading = false
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, PRListFragment.newInstance())
-                    .addToBackStack(null)
-                    .commit()
+                if (requireActivity().supportFragmentManager.findFragmentByTag(PRListFragment.javaClass.name) == null) {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                            .add(R.id.container, PRListFragment.newInstance(), PRListFragment.javaClass.name)
+                            .addToBackStack(null)
+                            .commit()
+                }
             }
             MainViewModel.LiveDataState.InvalidInput -> {
                 dataBinding.shouldEnableInput = true

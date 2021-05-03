@@ -61,10 +61,7 @@ class PRListFragment : Fragment(), OnClickHandler {
     }
 
     override fun onClickListener() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.container, SearchFragment.newInstance())
-            .addToBackStack(null)
-            .commit()
+        requireActivity().supportFragmentManager.popBackStack()
     }
 
     private fun setupRecyclerView() {
