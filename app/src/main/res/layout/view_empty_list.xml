@@ -6,7 +6,7 @@
     <data>
         <variable name="owner" type="String"/>
         <variable name="repo" type="String"/>
-        <variable name="clickListener" type="com.akriti.meeshoapp.utils.OnClickHandler" />
+        <variable name="clickListener" type="com.akriti.gitprapp.utils.OnClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

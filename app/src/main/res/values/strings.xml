@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assignment</string>
+    <string name="app_name">Git PR App</string>
 
     <!--Search Screen-->
     <string name="search_greeting">Hi</string>

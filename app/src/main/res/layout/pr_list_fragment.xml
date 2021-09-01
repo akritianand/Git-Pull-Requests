@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewmodel" type="com.akriti.meeshoapp.viewmodel.MainViewModel"/>
-        <variable name="clickListener" type="com.akriti.meeshoapp.utils.OnClickHandler" />
+        <variable name="viewmodel" type="com.akriti.gitprapp.viewmodel.MainViewModel"/>
+        <variable name="clickListener" type="com.akriti.gitprapp.utils.OnClickHandler" />
     </data>
 
     <ViewFlipper

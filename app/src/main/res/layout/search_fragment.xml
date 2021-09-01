@@ -5,7 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
-        <variable name="clickListener" type="com.akriti.meeshoapp.utils.OnClickHandler" />
+        <variable name="clickListener" type="com.akriti.gitprapp.utils.OnClickHandler" />
         <variable name="showLoading" type="Boolean" />
         <variable name="showInvalidInputError" type="Boolean" />
         <variable name="showError" type="Boolean" />
